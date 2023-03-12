@@ -1,5 +1,15 @@
-import { Wrapper, Page } from "@/styles/board";
-import { Header, Inform, Vector, Name, Date } from "@/styles/board_detail";
+import { Page } from "@/styles/board";
+import {
+  Header,
+  Wrapper,
+  Inform,
+  Vector,
+  Name,
+  Date,
+  Body,
+  Title,
+  Contents,
+} from "@/styles/board_detail";
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
@@ -11,7 +21,7 @@ const FETCH_BOARD = gql`
       writer
       title
       contents
-      createAt
+      createdAt
     }
   }
 `;
@@ -22,7 +32,7 @@ export default function BoardDetailPage() {
 
   //먼저 GraphQL에 있는 FetchBoard에 있는 데이터 가져와야됨
   const { data } = useQuery(FETCH_BOARD, {
-    variables: { boardId: router.query.boardId },
+    variables: { boardId: router.query.boardID },
   });
 
   return (
@@ -31,10 +41,15 @@ export default function BoardDetailPage() {
         <Header>
           <Vector src="/images/Vector.png" />
           <Inform>
-            <Name>{data.fetchBoard?.writer}</Name>
-            <Date>{data.fetchBoard?.createdAt}</Date>
+            <Name>{data?.fetchBoard?.writer}</Name>
+            <Date>{data?.fetchBoard?.createdAt}</Date>
           </Inform>
         </Header>
+
+        <Body>
+          <Title>{data?.fetchBoard?.title}</Title>
+          <Contents>{data?.fetchBoard?.contents}</Contents>
+        </Body>
       </Wrapper>
     </Page>
   );

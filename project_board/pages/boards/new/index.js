@@ -96,20 +96,24 @@ export default function BoardWriteUI() {
       setContentsError("내용을 입력해주세요.");
     }
     if (writer && password && title && contents) {
-      const result = await createBoard({
-        variables: {
-          createBoardInput: {
-            //객체에서 키와 value가 같으면 생략할 수 있다 shorthand-property
-            writer,
-            password,
-            title,
-            contents,
+      try {
+        const result = await createBoard({
+          variables: {
+            createBoardInput: {
+              //객체에서 키와 value가 같으면 생략할 수 있다 shorthand-property
+              writer,
+              password,
+              title,
+              contents,
+            },
           },
-        },
-      });
-      console.log("게시판 ID: " + result.data.createBoard._id);
-      // router.push(`/boards/${result.data.createBoard._id}`);
-      alert("게시글이 등록되었습니다.");
+        });
+        console.log("게시판 ID: " + result.data.createBoard._id);
+        router.push(`/boards/${result.data.createBoard._id}`);
+        alert("게시글이 등록되었습니다.");
+      } catch (error) {
+        alert(error.message);
+      }
     }
   };
   //화면
