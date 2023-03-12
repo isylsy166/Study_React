@@ -9,6 +9,8 @@ import {
   Body,
   Title,
   Contents,
+  ButtonWrapper,
+  Button,
 } from "@/styles/board_detail";
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
@@ -51,6 +53,11 @@ export default function BoardDetailPage() {
           <Contents>{data?.fetchBoard?.contents}</Contents>
         </Body>
       </Wrapper>
+      <ButtonWrapper>
+        <Button>목록으로</Button>
+        <Button>수정하기</Button>
+        <Button>삭제하기</Button>
+      </ButtonWrapper>
     </Page>
   );
 }

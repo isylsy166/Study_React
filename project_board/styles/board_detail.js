@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.div`
   border: 1px solid black;
   width: 600px;
-  height: 800px;
+  height: 600px;
   //정렬
   display: flex;
   flex-direction: column;
@@ -48,8 +48,8 @@ export const Vector = styled.img`
 `;
 
 export const Name = styled.div`
-  font-size: 25px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 550;
   padding-bottom: 5px;
 `;
 
@@ -70,4 +70,33 @@ export const Title = styled.div`
 export const Contents = styled.div`
   font-size: 17px;
   padding-left: 4px;
+`;
+
+export const ButtonWrapper = styled.div`
+  width: 450px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 40px;
+`;
+
+export const Button = styled.button`
+  width: 130px;
+  height: 40px;
+  padding: 10px 25px;
+  border: 2px solid #6495ed;
+  color: #6495ed;
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+  :hover {
+    box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+      7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
+  }
 `;
