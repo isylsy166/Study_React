@@ -9,7 +9,7 @@ export default function BoardDetail() {
 
   //먼저 GraphQL에 있는 FetchBoard에 있는 데이터 가져와야됨
   const { data } = useQuery(FETCH_BOARD, {
-    variables: { boardId: router.query.boardID },
+    variables: { boardId: router.query.BoardDetail },
   });
 
   return <BoardDetailUI data={data} />;
