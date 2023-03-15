@@ -16,13 +16,17 @@ export default function BoardListUI(props) {
             <L.ID>{el._id}</L.ID>
             <L.Basic>{el.writer}</L.Basic>
 
-            <L.Title>{el.title}</L.Title>
+            <L.Title id={el._id} onClick={props.onClickMoveBoardDetail}>
+              {el.title}
+            </L.Title>
             <L.Basic>{el.createdAt}</L.Basic>
           </L.Row>
         );
       })}
       <L.ButtonWrapper>
-        <L.Button>게시글 등록하기</L.Button>
+        <L.Button onClick={props.onClickMoveBoardWrite}>
+          게시글 등록하기 <L.PencilIcon src="/images/write.png" />
+        </L.Button>
       </L.ButtonWrapper>
     </L.Wrapper>
   );

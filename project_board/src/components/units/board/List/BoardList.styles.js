@@ -80,12 +80,24 @@ export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 23px;
 `;
 
 export const Button = styled.button`
   cursor: pointer;
-  width: 150px;
+  width: 180px;
   height: 50px;
+  background-color: white;
+  border-radius: 12px;
   font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+
+  :hover {
+    background-color: #f5f2fc;
+  }
 `;
+
+export const PencilIcon = styled.img``;
