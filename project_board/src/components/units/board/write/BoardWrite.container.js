@@ -3,9 +3,9 @@ import BoardWriteUI from "./BoardWrite.presenter";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { CREATE_BOARD } from "./BoardWrite.queries";
+import { CREATE_BOARD, EDIT_BOARD } from "./BoardWrite.queries";
 
-export default function BoardWrite() {
+export default function BoardWrite(props) {
   const router = useRouter();
   //입력받은 값
   const [writer, setWriter] = useState("");
@@ -21,6 +21,7 @@ export default function BoardWrite() {
 
   //GraphQl Mutation으로 create Board
   const [createBoard] = useMutation(CREATE_BOARD);
+  const [updateBoard] = useMutation(EDIT_BOARD);
 
   //input창에 적은거 변수로 저장
   const onChangeWriter = (event) => {
@@ -52,7 +53,7 @@ export default function BoardWrite() {
     }
   }
 
-  //저장하기 버튼 눌렀을 때 실행할 함수
+  //등록하기 버튼
   const onClickSubmit = async () => {
     if (!writer) {
       setWriterError("작성자를 입력해주세요.");
@@ -88,8 +89,22 @@ export default function BoardWrite() {
     }
   };
 
+  //수정하기
+  const onClickEdit = async () => {
+    const result = await updateBoard({
+      variables: {
+        updateBoardInput: { title, contents },
+        password: password,
+        boardId: router.query.BoardDetail,
+      },
+    });
+
+    router.push(`/boards/${router.query.BoardDetail}`);
+  };
+
   return (
     <BoardWriteUI
+      //내꺼
       writerError={writerError}
       contentsError={contentsError}
       titleError={titleError}
@@ -99,6 +114,9 @@ export default function BoardWrite() {
       onChangeTitle={onChangeTitle}
       onChangeContents={onChangeContents}
       onClickSubmit={onClickSubmit}
+      onClickEdit={onClickEdit}
+      //받아온거
+      isEdit={props.isEdit}
     />
   );
 }
