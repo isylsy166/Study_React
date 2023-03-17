@@ -1,3 +1,4 @@
+import { getDate } from "@/src/components/commons/libraries/utils";
 import * as S from "@/src/components/units/board/detail/BoardDetail.styles";
 import { Page } from "@/src/components/units/board/write/BoardWrite.styles";
 
@@ -9,7 +10,7 @@ export default function BoardDetailUI(props) {
           <S.Vector src="/images/Vector.png" />
           <S.Inform>
             <S.Name>{props.data?.fetchBoard?.writer}</S.Name>
-            <S.Date>{props.data?.fetchBoard?.createdAt}</S.Date>
+            <S.Date>{getDate(props.data?.fetchBoard?.createdAt)}</S.Date>
           </S.Inform>
         </S.Header>
 
@@ -21,7 +22,12 @@ export default function BoardDetailUI(props) {
       <S.ButtonWrapper>
         <S.Button onClick={props.onClickMoveBoardList}>목록으로</S.Button>
         <S.Button>수정하기</S.Button>
-        <S.Button>삭제하기</S.Button>
+        <S.Button
+          id={props.data?.fetchBoard?._id}
+          onClick={props.onClickBoardDelete}
+        >
+          삭제하기
+        </S.Button>
       </S.ButtonWrapper>
     </Page>
   );

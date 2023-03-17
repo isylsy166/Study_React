@@ -1,7 +1,7 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import BoardDetailUI from "./BoardDetail.presenter";
-import { FETCH_BOARD } from "./BoardDetail.queries";
+import { FETCH_BOARD, DELETE_BOARD } from "./BoardDetail.queries";
 
 export default function BoardDetail() {
   //페이지 이동을 위해 라우터 사용
@@ -12,11 +12,28 @@ export default function BoardDetail() {
     variables: { boardId: router.query.BoardDetail },
   });
 
+  const [deleteBoard] = useMutation(DELETE_BOARD);
+
+  //목록으로
   const onClickMoveBoardList = () => {
     router.push("/boards/BoardList");
   };
 
+  //삭제하기
+  const onClickBoardDelete = async (event) => {
+    await deleteBoard({
+      variables: { boardId: event.target.id },
+      refetchQueries: [{ query: FETCH_BOARD }],
+    });
+    alert("게시글이 삭제되었습니다.");
+    router.push("/boards/BoardList");
+  };
+
   return (
-    <BoardDetailUI data={data} onClickMoveBoardList={onClickMoveBoardList} />
+    <BoardDetailUI
+      data={data}
+      onClickMoveBoardList={onClickMoveBoardList}
+      onClickBoardDelete={onClickBoardDelete}
+    />
   );
 }
