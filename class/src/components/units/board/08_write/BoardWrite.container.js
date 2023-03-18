@@ -31,14 +31,13 @@ export default function BoardWrite(props) {
   };
 
   const onClickUpdate = async () => {
+    const myvariables = { number: Number(router.query.number) };
+    if (writer) myvariables.writer = writer;
+    if (title) myvariables.title = title;
+    if (contents) myvariables.contents = contents;
     //수정하기 뮤테이션 날리기
     const result = await updateBoard({
-      variables: {
-        number: Number(router.query.number),
-        writer,
-        title,
-        contents,
-      },
+      variables: myvariables,
     });
     //2.상세페이지로 이동하기
     alert("수정되었습니다");
@@ -79,6 +78,7 @@ export default function BoardWrite(props) {
       mycolor={mycolor}
       //props로 받아왔기 때문에 props.을 앞에 붙여줘야한다
       isEdit={props.isEdit}
+      data={props.data}
     />
   );
 }

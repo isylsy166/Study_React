@@ -11,6 +11,7 @@ export default function BoardWriteUI(props) {
             <S.Writer
               placeholder="이름을 입력하세요"
               onChange={props.onChangeWriter}
+              defaultValue={props.data?.fetchBoard.writer}
             />
             <S.Error>{props.writerError}</S.Error>
           </S.InputWrapper>
@@ -30,6 +31,7 @@ export default function BoardWriteUI(props) {
             <S.Writer
               placeholder="제목을 입력하세요"
               onChange={props.onChangeTitle}
+              defaultValue={props.data?.fetchBoard.title}
             />
             <S.Error>{props.titleError}</S.Error>
           </S.InputWrapper2>
@@ -38,6 +40,7 @@ export default function BoardWriteUI(props) {
             <S.Content
               placeholder="내용을 입력하세요"
               onChange={props.onChangeContents}
+              defaultValue={props.data?.fetchBoard.contents}
             />
             <S.Error>{props.contentsError}</S.Error>
           </S.InputWrapper2>
@@ -89,6 +92,7 @@ export default function BoardWriteUI(props) {
           <S.SubmitWrapper>
             <S.SubmitButton
               onClick={props.isEdit ? props.onClickEdit : props.onClickSubmit}
+              isActive={props.isEdit ? props.isActive : false}
             >
               {props.isEdit ? "수정하기" : "등록하기"}
             </S.SubmitButton>

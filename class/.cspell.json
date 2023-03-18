@@ -1,5 +1,12 @@
 // cSpell Unknown word 안뜨게 등록
 
 {
-  "words": ["pagemove", "pagemove2", "skyblue", "mycolor", "pagename"]
+  "words": [
+    "pagemove",
+    "pagemove2",
+    "skyblue",
+    "mycolor",
+    "pagename",
+    "myvariables"
+  ]
 }

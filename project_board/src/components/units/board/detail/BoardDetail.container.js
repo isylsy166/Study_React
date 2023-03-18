@@ -28,6 +28,7 @@ export default function BoardDetail(props) {
 
     // router.push(`/boards/${router.query}/BoardEdit`);
     router.push(`/boards/${data.fetchBoard._id}/BoardEdit`);
+    console.log(router);
   };
 
   //삭제하기

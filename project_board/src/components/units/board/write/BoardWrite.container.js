@@ -7,49 +7,76 @@ import { CREATE_BOARD, EDIT_BOARD } from "./BoardWrite.queries";
 
 export default function BoardWrite(props) {
   const router = useRouter();
-  //입력받은 값
+  const [isActive, setIsActive] = useState(false);
+
+  //input
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
 
-  //에러메시지
+  //Error
   const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [titleError, setTitleError] = useState("");
   const [contentsError, setContentsError] = useState("");
 
-  //GraphQl Mutation으로 create Board
+  //GraphQl
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(EDIT_BOARD);
 
-  //input창에 적은거 변수로 저장
+  //input writer
   const onChangeWriter = (event) => {
     setWriter(event.target.value);
     if (event.target.value !== "") {
       setWriterError("");
     }
+
+    if (event.target.value && password && title && contents) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
   };
-  //비밀번호
+
+  //input password
   const onChangePassword = (e) => {
     setPassword(e.target.value);
     if (e.target.value !== "") {
-      //내용이 뭐라도 적혀있다면
-      setPasswordError(""); //에러메시지 없애기
+      setPasswordError("");
+    }
+
+    if (e.target.value && writer && title && contents) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
     }
   };
-  //제목
+
+  //input title
   const onChangeTitle = (event) => {
     setTitle(event.target.value);
     if (event.target.value !== "") {
       setTitleError("");
     }
+
+    if (event.target.value && password && writer && contents) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
   };
-  //내용
+  //input contents
   function onChangeContents(event) {
     setContents(event.target.value);
     if (event.target.value !== "") {
       setContentsError("");
+    }
+
+    if (event.target.value && password && title && writer) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
     }
   }
 
@@ -91,15 +118,30 @@ export default function BoardWrite(props) {
 
   //수정하기
   const onClickEdit = async () => {
+    if (title && !contents) {
+      alert("수정한 내용이 없습니다");
+      return;
+    }
+
+    if (!password) {
+      alert("비밀번호를 입력하세요");
+      return;
+    }
+
+    const updateBoardInput = {};
+
+    if (title) updateBoardInput.title = title;
+    if (contents) updateBoardInput.contents = contents;
+
     const result = await updateBoard({
       variables: {
-        updateBoardInput: { title, contents },
-        password: password,
         boardId: router.query.BoardDetail,
+        password: password,
+        updateBoardInput: updateBoardInput,
       },
     });
 
-    router.push(`/boards/${router.query.BoardDetail}`);
+    router.push(`/boards/${result.data?.updateBoard._id}`);
   };
 
   return (
@@ -115,6 +157,8 @@ export default function BoardWrite(props) {
       onChangeContents={onChangeContents}
       onClickSubmit={onClickSubmit}
       onClickEdit={onClickEdit}
+      isActive={isActive}
+      data={props.data}
       //받아온거
       isEdit={props.isEdit}
     />
