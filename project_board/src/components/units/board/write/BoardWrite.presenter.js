@@ -1,3 +1,7 @@
+import {
+  Btn3span,
+  Button3,
+} from "@/src/buttons/Button01/animation_buttons.styles";
 import * as S from "@/src/components/units/board/write/BoardWrite.styles";
 
 export default function BoardWriteUI(props) {
@@ -90,12 +94,12 @@ export default function BoardWriteUI(props) {
 
         <S.SubWrapperRow>
           <S.SubmitWrapper>
-            <S.SubmitButton
+            <Button3
               onClick={props.isEdit ? props.onClickEdit : props.onClickSubmit}
               isActive={props.isEdit ? props.isActive : false}
             >
-              {props.isEdit ? "수정하기" : "등록하기"}
-            </S.SubmitButton>
+              <Btn3span>{props.isEdit ? "수정하기" : "등록하기"}</Btn3span>
+            </Button3>
           </S.SubmitWrapper>
         </S.SubWrapperRow>
       </S.Wrapper>
