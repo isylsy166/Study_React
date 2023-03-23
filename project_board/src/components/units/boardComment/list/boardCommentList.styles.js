@@ -37,7 +37,7 @@ export const ContentsWrapper = styled.div`
 `;
 
 export const Contents = styled.div`
-  font-size: 20px;
+  font-size: 18px;
 `;
 
 export const OptionWrapper = styled.div`

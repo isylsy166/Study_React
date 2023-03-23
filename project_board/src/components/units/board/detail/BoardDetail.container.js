@@ -23,12 +23,8 @@ export default function BoardDetail(props) {
 
   //수정하기
   const onClickEdit = () => {
-    console.log(router);
-    console.log(data);
-
     // router.push(`/boards/${router.query}/BoardEdit`);
     router.push(`/boards/${data.fetchBoard._id}/BoardEdit`);
-    console.log(router);
   };
 
   //삭제하기
