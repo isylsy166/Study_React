@@ -1,3 +1,4 @@
+import { getDate } from "@/src/components/commons/libraries/utils";
 import { Page } from "../../board/write/BoardWrite.styles";
 import * as S from "../list/boardCommentList.styles";
 
@@ -10,7 +11,7 @@ export default function BoardCommentListUI(props) {
             <S.ProfileWrapper>
               <S.Avatar src="/images/avatar.png" />
               <S.Name>{el.writer}</S.Name>
-              <S.DateString>{el.createdAt}</S.DateString>
+              <S.DateString>{getDate(el.createdAt)}</S.DateString>
             </S.ProfileWrapper>
             <S.ContentsWrapper>
               <S.Contents>{el.contents}</S.Contents>

@@ -16,6 +16,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   //여백
+  margin-top: 50px;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 40px;
