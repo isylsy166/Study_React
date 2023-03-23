@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 interface Iprops {
   isEdit: boolean;
-  data: any;
+  data?: any;
 }
 
 export default function BoardWrite(props: Iprops) {
