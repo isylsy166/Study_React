@@ -3,8 +3,6 @@ import styled from "@emotion/styled";
 // 감싸는애들
 export const Page = styled.div`
   width: 100vw;
-  padding-top: 60px;
-  padding-bottom: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;

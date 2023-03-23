@@ -10,6 +10,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   //여백
+  margin-top: 50px;
+  //여백
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 40px;
@@ -77,7 +79,7 @@ export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 40px;
+  margin-top: 30px;
 `;
 
 export const Button = styled.button`
