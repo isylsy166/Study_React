@@ -3,13 +3,9 @@ import { useMutation } from "@apollo/client";
 import { ChangeEvent, useState } from "react";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import { useRouter } from "next/router";
+import { IBoardWriteProps, IMyvariables } from "./BoardWrite.types";
 
-interface Iprops {
-  isEdit: boolean;
-  data?: any;
-}
-
-export default function BoardWrite(props: Iprops) {
+export default function BoardWrite(props: IBoardWriteProps) {
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
 
@@ -36,13 +32,6 @@ export default function BoardWrite(props: Iprops) {
   };
 
   const onClickUpdate = async () => {
-    interface IMyvariables {
-      number: number;
-      writer?: string;
-      title?: string;
-      contents?: string;
-    }
-
     const myvariables: IMyvariables = { number: Number(router.query.number) };
     if (writer) myvariables.writer = writer;
     if (title) myvariables.title = title;
