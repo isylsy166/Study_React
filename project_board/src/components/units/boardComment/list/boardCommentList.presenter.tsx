@@ -1,8 +1,9 @@
-import { getDate } from "@/src/components/commons/libraries/utils";
+import { getDate } from "../../../commons/libraries/utils";
 import { Page } from "../../board/write/BoardWrite.styles";
-import * as S from "../list/boardCommentList.styles";
+import * as S from "./boardCommentList.styles";
+import { IBoardCommentListUIProps } from "./boardCommentList.types";
 
-export default function BoardCommentListUI(props) {
+export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
   return (
     <div>
       <Page>

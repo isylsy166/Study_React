@@ -10,7 +10,7 @@ export const CREATE_BOARD = gql`
 `;
 
 //수정하기
-export const EDIT_BOARD = gql`
+export const UPDATE_BOARD = gql`
   mutation updateBoard(
     $updateBoardInput: UpdateBoardInput!
     $password: String

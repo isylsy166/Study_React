@@ -1,8 +1,9 @@
-import { getDate } from "@/src/components/commons/libraries/utils";
-import * as S from "@/src/components/units/board/detail/BoardDetail.styles";
-import { Page } from "@/src/components/units/board/write/BoardWrite.styles";
+import { getDate } from "../../../commons/libraries/utils";
+import * as S from "../detail/BoardDetail.styles";
+import { Page } from "../write/BoardWrite.styles";
+import { IBoardDetailUIProps } from "./BoardDetail.types";
 
-export default function BoardDetailUI(props) {
+export default function BoardDetailUI(props: IBoardDetailUIProps) {
   return (
     <Page>
       <S.Wrapper>

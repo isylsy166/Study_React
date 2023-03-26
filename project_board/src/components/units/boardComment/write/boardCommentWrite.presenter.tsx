@@ -1,6 +1,6 @@
 import { from } from "@apollo/client";
 import { Page } from "../../board/write/BoardWrite.styles";
-import * as S from "../write/boardCommentWrite.styles";
+import * as S from "./boardCommentWrite.styles";
 
 export default function BoardCommentWriteUI(props) {
   return (

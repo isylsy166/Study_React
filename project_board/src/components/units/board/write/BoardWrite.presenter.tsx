@@ -1,10 +1,16 @@
+// import {
+//   Btn3span,
+//   Button3,
+// } from "@/src/buttons/Button01/animation_buttons.styles";
+// import * as S from "@/src/components/units/board/write/BoardWrite.styles";
+import * as S from "../write/BoardWrite.styles";
 import {
   Btn3span,
   Button3,
-} from "@/src/buttons/Button01/animation_buttons.styles";
-import * as S from "@/src/components/units/board/write/BoardWrite.styles";
+} from "../../../../../src/buttons/Button01/animation_buttons.styles";
+import { IBoardWriteUIProps } from "./BoardWrite.types";
 
-export default function BoardWriteUI(props) {
+export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
     <S.Page>
       <S.Wrapper>

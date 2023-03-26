@@ -2,10 +2,16 @@ import BoardWriteUI from "./BoardWrite.presenter";
 
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import { CREATE_BOARD, EDIT_BOARD } from "./BoardWrite.queries";
+import { useState, ChangeEvent } from "react";
+import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
+import { IBoardWriteProps, IUpdateBoardInput } from "./BoardWrite.types";
+import {
+  IMutation,
+  IMutationCreateBoardArgs,
+  IMutationUpdateBoardArgs,
+} from "../../../../commons/types/types";
 
-export default function BoardWrite(props) {
+export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
 
@@ -22,11 +28,17 @@ export default function BoardWrite(props) {
   const [contentsError, setContentsError] = useState("");
 
   //GraphQl
-  const [createBoard] = useMutation(CREATE_BOARD);
-  const [updateBoard] = useMutation(EDIT_BOARD);
+  const [createBoard] = useMutation<
+    Pick<IMutation, "createBoard">,
+    IMutationCreateBoardArgs
+  >(CREATE_BOARD);
+  const [updateBoard] = useMutation<
+    Pick<IMutation, "updateBoard">,
+    IMutationUpdateBoardArgs
+  >(UPDATE_BOARD);
 
   //input writer
-  const onChangeWriter = (event) => {
+  const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
     if (event.target.value !== "") {
       setWriterError("");
@@ -40,13 +52,13 @@ export default function BoardWrite(props) {
   };
 
   //input password
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
-    if (e.target.value !== "") {
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+    if (event.target.value !== "") {
       setPasswordError("");
     }
 
-    if (e.target.value && writer && title && contents) {
+    if (event.target.value && writer && title && contents) {
       setIsActive(true);
     } else {
       setIsActive(false);
@@ -54,7 +66,7 @@ export default function BoardWrite(props) {
   };
 
   //input title
-  const onChangeTitle = (event) => {
+  const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
     if (event.target.value !== "") {
       setTitleError("");
@@ -67,7 +79,7 @@ export default function BoardWrite(props) {
     }
   };
   //input contents
-  function onChangeContents(event) {
+  function onChangeContents(event: ChangeEvent<HTMLTextAreaElement>) {
     setContents(event.target.value);
     if (event.target.value !== "") {
       setContentsError("");
@@ -128,14 +140,14 @@ export default function BoardWrite(props) {
       return;
     }
 
-    const updateBoardInput = {};
+    const updateBoardInput: IUpdateBoardInput = {};
 
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
 
     const result = await updateBoard({
       variables: {
-        boardId: router.query.BoardDetail,
+        boardId: String(router.query.BoardDetail),
         password: password,
         updateBoardInput: updateBoardInput,
       },

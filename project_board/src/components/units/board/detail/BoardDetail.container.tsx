@@ -2,15 +2,17 @@
 
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
+import { IQuery, IQueryFetchBoardArgs } from "../../../../commons/types/types";
 import BoardDetailUI from "./BoardDetail.presenter";
 import { FETCH_BOARD, DELETE_BOARD } from "./BoardDetail.queries";
+import { IBoardDetailProps } from "./BoardDetail.types";
 
-export default function BoardDetail(props) {
+export default function BoardDetail(props: IBoardDetailProps) {
   //페이지 이동을 위해 라우터 사용
   const router = useRouter();
 
   //먼저 GraphQL에 있는 FetchBoard에 있는 데이터 가져와야됨
-  const { data } = useQuery(FETCH_BOARD, {
+  const { data } = useQuery<Pick<IQuery, "fetchBoard">>(FETCH_BOARD, {
     variables: { boardId: router.query.BoardDetail },
   });
 
@@ -43,7 +45,6 @@ export default function BoardDetail(props) {
       onClickMoveBoardList={onClickMoveBoardList}
       onClickBoardDelete={onClickBoardDelete}
       onClickEdit={onClickEdit}
-      isEdit={props.isEdit}
     />
   );
 }

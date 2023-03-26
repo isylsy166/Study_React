@@ -1,8 +1,9 @@
-import { getDate } from "@/src/components/commons/libraries/utils";
-import * as L from "src/components/units/board/List/BoardList.styles";
+import * as L from "../List/BoardList.styles";
+import { getDate } from "../../../commons/libraries/utils";
 import { Page } from "../write/BoardWrite.styles";
+import { IBoardListUIProps } from "./BoardList.types";
 
-export default function BoardListUI(props) {
+export default function BoardListUI(props: IBoardListUIProps) {
   return (
     <Page>
       <L.Wrapper>

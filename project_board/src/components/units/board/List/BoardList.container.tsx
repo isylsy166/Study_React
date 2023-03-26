@@ -2,8 +2,10 @@ import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import BoardListUI from "./BoardList.presenter";
 import { FETCH_BOARDS } from "./BoardList.queries";
+import { MouseEvent } from "react";
+import { IBoardListProps } from "./BoardList.types";
 
-export default function BoardList() {
+export default function BoardList(props: IBoardListProps) {
   //게시글 가져오기
   const { data } = useQuery(FETCH_BOARDS);
   //console.log(data?.fetchBoards);
@@ -15,7 +17,7 @@ export default function BoardList() {
     router.push("/boards/BoardWrite");
   };
 
-  const onClickMoveBoardDetail = (event) => {
+  const onClickMoveBoardDetail = (event: MouseEvent<HTMLDivElement>) => {
     router.push(`/boards/${event.target.id}`);
   };
 
