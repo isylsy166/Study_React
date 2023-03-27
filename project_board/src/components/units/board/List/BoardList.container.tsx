@@ -18,7 +18,7 @@ export default function BoardList(props: IBoardListProps) {
   };
 
   const onClickMoveBoardDetail = (event: MouseEvent<HTMLDivElement>) => {
-    router.push(`/boards/${event.target.id}`);
+    router.push(`/boards/${event.currentTarget.id}`);
   };
 
   return (

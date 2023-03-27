@@ -16,13 +16,15 @@ export default function BoardListUI(props: IBoardListUIProps) {
 
         {props.data?.fetchBoards.map((el, index) => {
           return (
-            <L.Row key={el._id}>
+            <L.Row
+              id={el._id}
+              key={el._id}
+              onClick={props.onClickMoveBoardDetail}
+            >
               <L.ID>{el._id}</L.ID>
               <L.Basic>{el.writer}</L.Basic>
 
-              <L.Title id={el._id} onClick={props.onClickMoveBoardDetail}>
-                {el.title}
-              </L.Title>
+              <L.Title id={el._id}>{el.title}</L.Title>
               <L.Basic>{getDate(el.createdAt)}</L.Basic>
             </L.Row>
           );

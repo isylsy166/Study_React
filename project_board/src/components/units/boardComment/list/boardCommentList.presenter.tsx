@@ -8,10 +8,10 @@ export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
     <div>
       <Page>
         {props.data?.fetchBoardComments.map((el) => (
-          <S.Wrapper>
+          <S.Wrapper id={el.writer} onClick={props.onClickWrapper}>
             <S.ProfileWrapper>
               <S.Avatar src="/images/avatar.png" />
-              <S.Name>{el.writer}</S.Name>
+              <S.Name id={el.writer}>{el.writer}</S.Name>
               <S.DateString>{getDate(el.createdAt)}</S.DateString>
             </S.ProfileWrapper>
             <S.ContentsWrapper>

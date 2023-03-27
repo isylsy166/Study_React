@@ -1,14 +1,16 @@
 import { ChangeEvent } from "react";
-import { IMutation, IQuery } from "../../../../commons/types/types";
+import { IQuery } from "../../../../commons/types/types";
 
 export interface IBoardWriteProps {
   isEdit: boolean;
-  data?: Pick<IMutation, "createBoard">;
+  isActive: boolean;
+  data?: Pick<IQuery, "fetchBoard">;
 }
 
 export interface IBoardWriteUIProps {
   isEdit: boolean;
   isActive: boolean;
+
   onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangePassword: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;

@@ -7,12 +7,19 @@ import {
 } from "./boardCommentList.queries";
 import { IBoardCommentListProps } from "./boardCommentList.types";
 import { MouseEvent } from "react";
+import {
+  IQuery,
+  IQueryFetchBoardCommentsArgs,
+} from "../../../../commons/types/types";
 
 export default function BoardCommentList(props: IBoardCommentListProps) {
   const router = useRouter();
   const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
-  const { data } = useQuery(FETCH_BOARD_COMMENTS, {
-    variables: { boardId: router.query.BoardDetail },
+  const { data } = useQuery<
+    Pick<IQuery, "fetchBoardComments">,
+    IQueryFetchBoardCommentsArgs
+  >(FETCH_BOARD_COMMENTS, {
+    variables: { boardId: String(router.query.BoardDetail) },
   });
 
   const onClickDelete = async (event: MouseEvent<HTMLImageElement>) => {
@@ -35,5 +42,15 @@ export default function BoardCommentList(props: IBoardCommentListProps) {
     }
   };
 
-  return <BoardCommentListUI data={data} onClickDelete={onClickDelete} />;
+  const onClickWrapper = (event) => {
+    alert(event.currentTarget.id + "님이 작성한 글입니다.");
+  };
+
+  return (
+    <BoardCommentListUI
+      data={data}
+      onClickDelete={onClickDelete}
+      onClickWrapper={onClickWrapper}
+    />
+  );
 }

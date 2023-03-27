@@ -13,7 +13,6 @@ import {
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
-  const [isActive, setIsActive] = useState(false);
 
   //input
   const [writer, setWriter] = useState("");
@@ -26,6 +25,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [passwordError, setPasswordError] = useState("");
   const [titleError, setTitleError] = useState("");
   const [contentsError, setContentsError] = useState("");
+
+  const [isActive, setIsActive] = useState(false);
 
   //GraphQl
   const [createBoard] = useMutation<

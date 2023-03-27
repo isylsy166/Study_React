@@ -24,6 +24,8 @@ export const Avatar = styled.img`
 export const Name = styled.div`
   font-size: 20px;
   font-weight: bold;
+  cursor: pointer;
+  margin-right: 10px;
 `;
 
 export const DateString = styled.div`
