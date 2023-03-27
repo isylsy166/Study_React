@@ -28,7 +28,7 @@ export default function BoardCommentList(props: IBoardCommentListProps) {
       await deleteBoardComment({
         variables: {
           password: myPassword,
-          boardCommentId: event.target.id,
+          boardCommentId: event.currentTarget.id,
         },
         refetchQueries: [
           {

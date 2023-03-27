@@ -19,7 +19,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/section08/01_typescript/index.jsx"
+    "pages/section08/01_typescript/index.jsx",
+    "pages/index.js"
   ],
   "exclude": ["node_modules"]
 }
