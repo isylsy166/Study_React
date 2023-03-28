@@ -17,12 +17,8 @@ export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
             <S.ContentsWrapper>
               <S.Contents>{el.contents}</S.Contents>
               <S.OptionWrapper>
-                <S.UpdateIcon src="/images/option_update_icon.png" />
-                <S.DeleteIcon
-                  id={el._id}
-                  src="/images/option_delete_icon.png"
-                  onClick={props.onClickDelete}
-                />
+                <S.EditIcon />
+                <S.DeleteIcon id={el._id} onClick={props.onClickDelete} />
               </S.OptionWrapper>
             </S.ContentsWrapper>
           </S.Wrapper>

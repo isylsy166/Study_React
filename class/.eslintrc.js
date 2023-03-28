@@ -10,9 +10,19 @@ module.exports = {
    ],
    overrides: [],
    parserOptions: {
+      project: "./class/tsconfig.json",
       ecmaVersion: "latest",
       sourceType: "module",
    },
    plugins: ["react"],
-   rules: {},
+   settings: {
+      react: {
+         version: "detect",
+      },
+   },
+   rules: {
+      "@typescript-eslint/explicit-function-return-type": "off",
+      "react/react-in-jsx-scope": "off",
+      "@typescript-eslint/consistent-type-imports": "off",
+   },
 };

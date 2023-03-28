@@ -1,3 +1,4 @@
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons/lib/icons";
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
@@ -48,12 +49,12 @@ export const OptionWrapper = styled.div`
   justify-content: end;
 `;
 
-export const UpdateIcon = styled.img`
-  width: 33px;
-  cursor: pointer;
+export const EditIcon = styled(EditOutlined)`
+  margin-right: 12px;
+  color: #6495ed;
 `;
 
-export const DeleteIcon = styled.img`
-  width: 33px;
-  cursor: pointer;
+export const DeleteIcon = styled(DeleteOutlined)`
+  margin-right: 10px;
+  color: #6495ed;
 `;

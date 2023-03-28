@@ -6,7 +6,7 @@ import {
   DELETE_BOARD_COMMENT,
 } from "./boardCommentList.queries";
 import { IBoardCommentListProps } from "./boardCommentList.types";
-import { MouseEvent } from "react";
+import { MouseEvent, ChangeEvent } from "react";
 import {
   IQuery,
   IQueryFetchBoardCommentsArgs,
@@ -42,8 +42,8 @@ export default function BoardCommentList(props: IBoardCommentListProps) {
     }
   };
 
-  const onClickWrapper = (event) => {
-    alert(event.currentTarget.id + "님이 작성한 글입니다.");
+  const onClickWrapper = (event: ChangeEvent<HTMLDivElement>) => {
+    alert(`${event.currentTarget.id}님이 작성한 글입니다.`);
   };
 
   return (

@@ -3,7 +3,7 @@ import { IQuery } from "../../../../commons/types/types";
 
 export interface IBoardWriteProps {
   isEdit: boolean;
-  isActive: boolean;
+
   data?: Pick<IQuery, "fetchBoard">;
 }
 
@@ -15,6 +15,7 @@ export interface IBoardWriteUIProps {
   onChangePassword: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  onClickWrapper: (event: ChangeEvent<HTMLDivElement>) => void;
 
   onClickEdit: () => void;
   onClickSubmit: () => void;

@@ -14,13 +14,13 @@ import {
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
 
-  //input
+  // input
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
 
-  //Error
+  // Error
   const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [titleError, setTitleError] = useState("");
@@ -28,7 +28,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
 
   const [isActive, setIsActive] = useState(false);
 
-  //GraphQl
+  // GraphQl
   const [createBoard] = useMutation<
     Pick<IMutation, "createBoard">,
     IMutationCreateBoardArgs
@@ -38,7 +38,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     IMutationUpdateBoardArgs
   >(UPDATE_BOARD);
 
-  //input writer
+  // input writer
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
     if (event.target.value !== "") {
@@ -52,7 +52,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
 
-  //input password
+  // input password
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
     if (event.target.value !== "") {
@@ -66,7 +66,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
 
-  //input title
+  // input title
   const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
     if (event.target.value !== "") {
@@ -79,7 +79,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       setIsActive(false);
     }
   };
-  //input contents
+  // input contents
   function onChangeContents(event: ChangeEvent<HTMLTextAreaElement>) {
     setContents(event.target.value);
     if (event.target.value !== "") {
@@ -93,7 +93,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   }
 
-  //등록하기 버튼
+  // 등록하기 버튼
   const onClickSubmit = async () => {
     if (!writer) {
       setWriterError("작성자를 입력해주세요.");
@@ -112,7 +112,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
         const result = await createBoard({
           variables: {
             createBoardInput: {
-              //객체에서 키와 value가 같으면 생략할 수 있다 shorthand-property
+              // 객체에서 키와 value가 같으면 생략할 수 있다 shorthand-property
               writer,
               password,
               title,
@@ -129,7 +129,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
 
-  //수정하기
+  // 수정하기
   const onClickEdit = async () => {
     if (title && !contents) {
       alert("수정한 내용이 없습니다");
@@ -159,7 +159,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
 
   return (
     <BoardWriteUI
-      //내꺼
+      // 내꺼
       writerError={writerError}
       contentsError={contentsError}
       titleError={titleError}
@@ -172,7 +172,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       onClickEdit={onClickEdit}
       isActive={isActive}
       data={props.data}
-      //받아온거
+      // 받아온거
       isEdit={props.isEdit}
     />
   );
